@@ -9,6 +9,7 @@ import meteordevelopment.meteorclient.commands.Command;
 import meteordevelopment.meteorclient.settings.Setting;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.meteorclient.systems.modules.Modules;
+import meteordevelopment.meteorclient.systems.modules.render.blockesp.BlockESP;
 import net.minecraft.client.multiplayer.ClientSuggestionProvider;
 import net.minecraft.commands.arguments.blocks.BlockInput;
 import net.minecraft.commands.arguments.blocks.BlockStateArgument;
@@ -27,7 +28,7 @@ public class Search extends Command {
         argument("target", BlockStateArgument.block(REGISTRY_ACCESS)).executes(context -> {
           Block block = context.getArgument("target", BlockInput.class).getState().getBlock();
           @Nullable
-          Module module = Modules.get().get("block-esp");
+          Module module = Modules.get().get(BlockESP.class);
           List<Block> setting = ((Setting<List<Block>>) module.settings.get("blocks")).get();
           if (setting.contains(block)) {
             info("Block already on the list.");
@@ -43,7 +44,7 @@ public class Search extends Command {
         argument("target", BlockStateArgument.block(REGISTRY_ACCESS)).executes(context -> {
           Block block = context.getArgument("target", BlockInput.class).getState().getBlock();
           @Nullable
-          Module module = Modules.get().get("block-esp");
+          Module module = Modules.get().get(BlockESP.class);
           List<Block> setting = ((Setting<List<Block>>) module.settings.get("blocks")).get();
           setting.remove(block);
           info("Removed " + block.getName().getString() + " to search list.");
@@ -55,7 +56,7 @@ public class Search extends Command {
           Block block = context.getArgument("target", BlockInput.class).getState().getBlock();
           String blockId = BuiltInRegistries.BLOCK.getKey(block).toString();
           @Nullable
-          Module module = Modules.get().get("block-esp");
+          Module module = Modules.get().get(BlockESP.class);
           module.settings.get("blocks").parse(blockId);
           module.enable();
           info("Searching for " + block.getName().getString() + ".");
@@ -63,13 +64,13 @@ public class Search extends Command {
         })));
 
     builder.then(literal("on").executes(context -> {
-      Modules.get().get("block-esp").enable();
+      Modules.get().get(BlockESP.class).enable();
       info("Enabled block search.");
       return SINGLE_SUCCESS;
     }));
 
     builder.then(literal("off").executes(context -> {
-      Modules.get().get("block-esp").disable();
+      Modules.get().get(BlockESP.class).disable();
       info("Disabled block search.");
       return SINGLE_SUCCESS;
     }));
