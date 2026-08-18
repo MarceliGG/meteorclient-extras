@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 
 public class Addon extends MeteorAddon {
   public static final Logger LOG = LogUtils.getLogger();
-  public static final Category CATEGORY = new Category("Meteo");
+  public static final Category CATEGORY = new Category("Meteor Extras");
 
   @Override
   public void onInitialize() {
