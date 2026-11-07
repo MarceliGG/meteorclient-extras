@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "pl.marceligg.meteorextras.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "client": [
+    "ContainerScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
