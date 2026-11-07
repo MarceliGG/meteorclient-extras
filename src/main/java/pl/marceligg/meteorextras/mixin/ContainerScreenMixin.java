@@ -65,7 +65,7 @@ public abstract class ContainerScreenMixin extends Screen {
         Button.builder(Component.literal("Send"), b -> {
           me$send();
         }).bounds(
-            leftPos + imageWidth + 58, topPos, // position (x, y)
+            leftPos + imageWidth + 4, topPos + 20, // position (x, y)
             34, 16 // size (w, h)
         ).build());
   }
